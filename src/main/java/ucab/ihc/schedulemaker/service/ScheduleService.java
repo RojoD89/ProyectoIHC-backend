@@ -268,7 +268,7 @@ public class ScheduleService {
             recursiveCombinations(combination, 1, 0, subjectList, subjectList.get(1).getSections(), combinations);
         }
 
-        Collections.shuffle(combinations);
+        //Collections.shuffle(combinations);
 
         if(combinations.size() <= 50)
             return ResponseEntity.ok(combinations);
