@@ -214,8 +214,6 @@ public class ScheduleService {
     }
 
     public ResponseEntity<Object> getSchedules(SectionCommand command, int num){
-        boolean check;
-        boolean check1;
         setSubjectList(command);
         List<Section[]> combinations = new ArrayList<>();
         List<Section[]> results = new ArrayList<>();
@@ -225,15 +223,15 @@ public class ScheduleService {
             recursiveCombinations(combination, 1, 0, subjectList, subjectList.get(1).getSections(), combinations);
         }
 
-        if(num*10 <= combinations.size()) {
+        if(num+10 <= combinations.size()) {
             for (int i = num; i < num + 10; i++) {
-                results.add(combinations.get(num));
+                results.add(combinations.get(i));
             }
             return ResponseEntity.ok(results);
         }
         else if (num < combinations.size()){
             for (int i = num; i <= combinations.size(); i++) {
-                results.add(combinations.get(num));
+                results.add(combinations.get(i));
             }
             return ResponseEntity.ok(results);
         }
