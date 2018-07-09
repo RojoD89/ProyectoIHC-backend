@@ -159,8 +159,8 @@ public class ScheduleService {
             if((section.getMon() == null) && (section.getTue() == null) && (section.getWed() == null) && (section.getThu() == null)
                     &&(section.getFri() == null) && (section.getSat() == null) && section.getSun() == null)
                 return true;
-            if((combination[i].getSubject().contains(section.getSubject())) && (!section.getProfessor().equals(combination[i].getProfessor())))
-                return true;
+            //if((combination[i].getSubject().contains(section.getSubject())) && (!section.getProfessor().equals(combination[i].getProfessor())))
+                //return true;
         }
 
         return false;
@@ -213,6 +213,8 @@ public class ScheduleService {
             combination[0] = subjectList.get(0).getSections().get(i);
             recursiveCombinations(combination, 1, 0, subjectList, subjectList.get(1).getSections(), combinations);
         }
+
+        Collections.shuffle(combinations);
 
         if(combinations.size() <= 50)
             return ResponseEntity.ok(combinations);
