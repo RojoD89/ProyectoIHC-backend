@@ -226,7 +226,7 @@ public class ScheduleService {
         }
 
         if(num*10 <= combinations.size()) {
-            for (int i = num; i <= num * 10; i++) {
+            for (int i = num; i < num + 10; i++) {
                 results.add(combinations.get(num));
             }
             return ResponseEntity.ok(results);
