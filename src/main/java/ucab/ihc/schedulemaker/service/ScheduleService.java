@@ -114,30 +114,30 @@ public class ScheduleService {
 
     private boolean checkThreeHours(String string, String string1, String string2, String string3){
         String aux1 = string.split(":")[0];
-        String aux2 = string.split(":")[0];
-        String aux3 = string.split(":")[0];
-        String aux4 = string.split(":")[0];
+        String aux2 = string1.split(":")[0];
+        String aux3 = string2.split(":")[0];
+        String aux4 = string3.split(":")[0];
         int firstHourSect1 =  Integer.parseInt(aux1);
         int secondHourSect1 = Integer.parseInt(aux2);
         int firstHourSect2 = Integer.parseInt(aux3);
         int secondHourSect2 = Integer.parseInt(aux4);
         if((secondHourSect1 - firstHourSect1 > 1) && (secondHourSect2 - firstHourSect2 <= 1)){
-            int middleHour = secondHourSect1 - firstHourSect1;
+            int middleHour = secondHourSect1 - 1;
             if(middleHour == firstHourSect2)
                 return true;
             if(middleHour == secondHourSect2)
                 return true;
         }
         if((secondHourSect1 - firstHourSect1 <= 1) && (secondHourSect2 - firstHourSect2 > 1)){
-            int middleHour = secondHourSect2 - firstHourSect2;
+            int middleHour = secondHourSect2 - 1;
             if(middleHour == firstHourSect1)
                 return true;
             if(middleHour == secondHourSect1)
                 return true;
         }
         if((secondHourSect1 - firstHourSect1 > 1) && (secondHourSect2 - firstHourSect2 > 1)){
-            int middleHour1 = secondHourSect1 - firstHourSect1;
-            int middleHour2 = secondHourSect2 - firstHourSect2;
+            int middleHour1 = secondHourSect1 - 1;
+            int middleHour2 = secondHourSect2 - 1;
             if(middleHour1 == firstHourSect2)
                 return true;
             if(middleHour1 == secondHourSect2)
