@@ -223,8 +223,8 @@ public class ScheduleService {
             recursiveCombinations(combination, 1, 0, subjectList, subjectList.get(1).getSections(), combinations);
         }
 
-        if(num+10 <= combinations.size()) {
-            for (int i = num; i < num + 10; i++) {
+        if(num+50 <= combinations.size()) {
+            for (int i = num; i < num + 50; i++) {
                 results.add(combinations.get(i));
             }
             return ResponseEntity.ok(results);
