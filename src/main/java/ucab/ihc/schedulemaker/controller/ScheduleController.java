@@ -23,7 +23,7 @@ public class ScheduleController {
     @RequestMapping(value = "/get", consumes = "application/json", method = RequestMethod.POST)
     public ResponseEntity sendSchedules(@Valid @RequestBody SectionCommand command, @Nullable @RequestParam("pageNum") String pageNum) {
         if(pageNum == null)
-            return scheduleService.getSchedules(command,1);
+            return scheduleService.getSchedules(command,0);
         else
             return scheduleService.getSchedules(command, Integer.parseInt(pageNum));
 
