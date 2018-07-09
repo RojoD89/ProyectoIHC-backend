@@ -3,6 +3,7 @@ package ucab.ihc.schedulemaker.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 
 import ucab.ihc.schedulemaker.command.SectionCommand;
@@ -20,7 +21,11 @@ public class ScheduleController {
     private ScheduleService scheduleService;
 
     @RequestMapping(value = "/get", consumes = "application/json", method = RequestMethod.POST)
-    public ResponseEntity sendSchedules(@Valid @RequestBody SectionCommand command) {
-        return scheduleService.getSchedules(command);
+    public ResponseEntity sendSchedules(@Valid @RequestBody SectionCommand command, @Nullable @RequestParam("pageNum") String pageNum) {
+        if(pageNum == null)
+            return scheduleService.getSchedules(command,1);
+        else
+            return scheduleService.getSchedules(command, Integer.parseInt(pageNum));
+
     }
 }

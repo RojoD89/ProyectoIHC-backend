@@ -155,6 +155,9 @@ public class ScheduleService {
                         combination[i].getSun().getSecondHour().equals(section.getSun().getFirstHour()))
                     return true;
             }
+            if((section.getMon() == null) && (section.getTue() == null) && (section.getWed() == null) && (section.getThu() == null)
+                    &&(section.getFri() == null) && (section.getSat() == null) && section.getSun() == null)
+                return true;
 
         }
         return false;
@@ -198,17 +201,21 @@ public class ScheduleService {
         }
     }
 
-    public ResponseEntity<Object> getSchedules(SectionCommand command){
+    public ResponseEntity<Object> getSchedules(SectionCommand command, int num){
         setSubjectList(command);
         List<Section[]> combinations = new ArrayList<>();
-
+        List<Section[]> results = new ArrayList<>();
         for(int i = 0; i < subjectList.get(0).getNumberOfSections(); i++ ) {
             Section[] combination = new Section[subjectList.size()];
             combination[0] = subjectList.get(0).getSections().get(i);
             recursiveCombinations(combination, 1, 0, subjectList, subjectList.get(1).getSections(), combinations);
         }
-        System.out.println("Success");
-        return ResponseEntity.ok(combinations);
+
+        for(int i= num; i<= num*10; i++){
+            results.add(combinations.get(num));
+        }
+        System.out.println(combinations.size());
+        return ResponseEntity.ok(results);
     }
 
 }
