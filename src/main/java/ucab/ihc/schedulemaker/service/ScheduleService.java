@@ -112,8 +112,7 @@ public class ScheduleService {
         subjectList.sort(new SortByNumberOfSections());
     }
     private boolean checkConflict(Section[] combination, Section section, int length){
-        boolean check = false;
-        boolean check1 = false;
+
         for(int i = 0; i < length; i++){
             if((combination[i].getMon() != null) && (section.getMon() != null)) {
                 if (combination[i].getMon().getFirstHour().equals(section.getMon().getFirstHour()) ||
@@ -160,19 +159,11 @@ public class ScheduleService {
             if((section.getMon() == null) && (section.getTue() == null) && (section.getWed() == null) && (section.getThu() == null)
                     &&(section.getFri() == null) && (section.getSat() == null) && section.getSun() == null)
                 return true;
-            if((section.getSubject().contains("Prácticas"))){
-                check = true;
-                if((section.getSubject().contains(combination[i].getSubject())) && (section.getProfessor().equals(combination[i].getProfessor())))
-                    check1 = true;
-            }
             if((combination[i].getSubject().contains(section.getSubject())) && (!section.getProfessor().equals(combination[i].getProfessor())))
                 return true;
         }
 
-        if(check && !check1)
-            return true;
-        else
-            return false;
+        return false;
     }
 
     private void recursiveCombinations(Section[] combination, int ndx2, int ndx3, List<Subject> elems, List<Section> currentList, List<Section[]> combinations){
